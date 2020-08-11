@@ -1,0 +1,124 @@
+{% extends 'backoffice_layout.html.twig' %}
+
+{% block title %}{{ parent() }} Gestion des albums{% endblock %}
+
+{% block body %}
+    <div class="page-content-wrapper dashboard">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Gestion des albums </h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="row mb-5">
+                                <div class="col-6"><h4 class="mt-0 header-title">Liste des albums</h4></div>
+                                <div class="col-6">
+                                    <div class="text-right">
+                                        <a href="{{ path('album_new') }}" class="btn btn-primary">
+                                            <i class="fa fa-plus-circle"></i> Ajouter un album
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% for message in app.flashes('success') %}
+                                <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <i class="mdi mdi-checkbox-marked-circle font-32"></i><strong class="pr-1">Success !</strong> {{ message }}
+                                </div>
+                            {% endfor %}
+
+                            {% for message in app.flashes('error') %}
+                                <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <i class="mdi mdi-close-circle font-32"></i><strong class="pr-1">Erreur !</strong>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+
+                            <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">Id</th>
+                                    <th class="text-center">Artiste</th>
+                                    <th class="text-center">Titre</th>
+                                    <th class="text-center">Prix Vente</th>
+                                    <th class="text-center">Non Sticke</th>
+                                    <th class="text-center">Sticke</th>
+                                    <th class="text-center">Distribué</th>
+                                    <th class="text-center">Stock</th>
+                                    <th class="text-center">actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for album in albums %}
+                                    <tr>
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{ album.artiste.nom }}</td>
+                                        <td>{{ album.titre }}</td>
+                                        <td class="text-right">{{ album.prixVente }}</td>
+                                        <td class="text-center">{{ album.nonSticke }}</td>
+                                        <td class="text-center">{{ album.sticke }}</td>
+                                        <td class="text-center">{{ album.distribue }}</td>
+                                        <td class="text-center">{{ album.stock }}</td>
+                                        <td>
+                                            <a href="{{ path('album_show', {'id': album.id}) }}">show</a>
+                                            <a href="{{ path('album_edit', {'id': album.id}) }}">edit</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
+{% block stylesheets %}
+
+    <link href="{{ absolute_url(asset('backoffice/plugins/datatables/dataTables.bootstrap4.min.css')) }}" rel="stylesheet" type="text/css" />
+    <link href="{{ absolute_url(asset('backoffice/plugins/datatables/buttons.bootstrap4.min.css')) }}" rel="stylesheet" type="text/css" />
+    <link href="{{ absolute_url(asset('backoffice/plugins/datatables/responsive.bootstrap4.min.css')) }}" rel="stylesheet" type="text/css" />
+
+    {{ parent() }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ absolute_url(asset('backoffice/plugins/datatables/jquery.dataTables.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/plugins/datatables/dataTables.bootstrap4.min.js')) }}"></script>
+    <!-- Buttons examples -->
+    <script src="{{ absolute_url(asset('backoffice/plugins/datatables/dataTables.buttons.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/plugins/datatables/buttons.bootstrap4.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/plugins/datatables/jszip.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/plugins/datatables/pdfmake.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/plugins/datatables/vfs_fonts.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/plugins/datatables/buttons.html5.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/plugins/datatables/buttons.print.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/plugins/datatables/buttons.colVis.min.js')) }}"></script>
+    <!-- Responsive examples -->
+    <script src="{{ absolute_url(asset('backoffice/plugins/datatables/dataTables.responsive.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('backoffice/plugins/datatables/responsive.bootstrap4.min.js')) }}"></script>
+
+    <!-- Datatable init js -->
+    <script src="{{ absolute_url(asset('backoffice/pages/datatables.init.js')) }}"></script>
+{% endblock %}

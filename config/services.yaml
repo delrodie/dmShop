@@ -31,3 +31,8 @@ services:
         public: true
         tags:
             - { name: monolog.logger,channel: app}
+
+
+    App\Utilities\GestionMedia:
+        arguments:
+            $mediaAlbum: '%kernel.project_dir%/public/uploads/album'

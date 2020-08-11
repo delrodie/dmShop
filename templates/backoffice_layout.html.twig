@@ -50,12 +50,12 @@
                         <a href="javascript:void(0);" class="waves-effect waves-light"><i class="mdi mdi-table"></i><span> Label </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="list-unstyled">
                             <li><a href="{{ absolute_url(path('artiste_index')) }}">Artistes</a></li>
-                            <li><a href="#">Albums</a></li>
+                            <li><a href="{{ path('album_index') }}">Albums</a></li>
                         </ul>
                     </li>
 
                     <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect waves-light"><i class="fa fa-cubes"></i><span> Pre-commandes </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-cubes"></i><span> Pre-commandes </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="list-unstyled">
                             <li><a href="#">Albums</a></li>
                             <li><a href="#">Clients</a></li>
@@ -164,6 +164,7 @@
     <script src="{{ absolute_url(asset('backoffice/js/waves.js')) }}"></script>
     <script src="{{ absolute_url(asset('backoffice/js/jquery.nicescroll.js')) }}"></script>
     <script src="{{ absolute_url(asset('backoffice/js/jquery.scrollTo.min.js')) }}"></script>
+
     <script src="{{ asset('backoffice/pages/form-advanced.js') }}"></script>
     <script src="{{ absolute_url(asset('backoffice/js/app.js')) }}"></script>
 {% endblock %}
