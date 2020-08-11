@@ -8,3 +8,8 @@ Your password should be at least {{ limit }} characters: "Votre mot de passe doi
 security:
   PleaseEnterAPassword: "Veuillez entrer votre mot de passe"
   PasswordLimitCharacters: "Votre mot de passe doit contenir au moins 6 caractères"
+
+form:
+  btnSave: "Enregistrer"
+  btnUpdate: "Modifier"
+  btnCancel: "Annuler"

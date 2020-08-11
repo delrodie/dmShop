@@ -1,0 +1,91 @@
+{% extends 'backoffice_layout.html.twig' %}
+
+{% block title %}{{ parent() }} Gestion des artistes{% endblock %}
+
+{% block body %}
+    <div class="page-content-wrapper dashboard">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Gestion des Artistes </h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-xl-8">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="mt-0 header-title">Liste des artistes</h4>
+
+                            {% for message in app.flashes('success') %}
+                                <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <i class="mdi mdi-checkbox-marked-circle font-32"></i><strong class="pr-1">Success !</strong> {{ message }}
+                                </div>
+                            {% endfor %}
+
+                            {% for message in app.flashes('error') %}
+                                <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <i class="mdi mdi-close-circle font-32"></i><strong class="pr-1">Erreur !</strong>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+
+                            <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">NOMS</th>
+                                    <th class="text-center">ALBUMS</th>
+                                    <th class="text-center">ACTIONS</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for artiste in artistes %}
+                                    <tr>
+                                        <td class="text-right mr-3">{{ loop.index }}</td>
+                                        <td>{{ artiste.nom }}</td>
+                                        <td class="text-center">
+                                            {% if artiste.nombreAlbum %}{{ artiste.nombreAlbum }}
+                                            {% else %} -
+                                            {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ path('artiste_edit', {'id': artiste.id}) }}"><i class="fa fa-edit"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xl-4">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+
+                            <h4 class="mt-0 header-title">Enregistrerment</h4>
+
+                            {{ include('artiste/_form.html.twig') }}
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
