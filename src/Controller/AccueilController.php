@@ -36,6 +36,6 @@ class AccueilController extends AbstractController
     {
         $user = $this->getUser();
         $this->log->addLog($user, 'dashboard', $request->getClientIp());
-        return $this->render("accueil/index.html.twig");
+        return $this->render("backoffice/index.html.twig");
     }
 }
