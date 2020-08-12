@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\AlbumRepository;
 use App\Utilities\GestionLog;
 use App\Utilities\GestionMail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,11 +13,13 @@ class AccueilController extends AbstractController
 {
     private $gestMail;
     private $log;
+    private $albumrepository;
 
-    public function __construct(GestionMail $gestionMail, GestionLog $log)
+    public function __construct(GestionMail $gestionMail, GestionLog $log, AlbumRepository $albumRepository)
     {
         $this->gestMail= $gestionMail;
         $this->log = $log;
+        $this->albumrepository = $albumRepository;
     }
 
     /**
@@ -25,7 +28,7 @@ class AccueilController extends AbstractController
     public function index()
     {
         return $this->render('accueil/index.html.twig', [
-            'controller_name' => 'AccueilController',
+            'albums' => $this->albumrepository->findBy([],['id'=>'DESC']),
         ]);
     }
 

@@ -1,12 +1,230 @@
 <!DOCTYPE html>
+<html lang="fr">
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}SYMFONY 5 ::{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>{% block title %}Plateforme de distribution d'oeuvres discograpiques de Dream Maker{% endblock %}</title>
+
+        <meta name="keywords" content="Dream Maker, Boutique, " />
+        <meta name="description" content="Boutique de vente de vente de CD etde distribution de CD">
+        <meta name="author" content="Dream Maker, Delrodie AMOIKON">
+
+        <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.ico">
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ absolute_url(asset('assets/css/bootstrap.min.css')) }}">
+
+            <link rel="stylesheet" href="{{ absolute_url(asset('assets/css/style.min.css')) }}">
+            <link rel="stylesheet" type="text/css" href="{{ absolute_url(asset('assets/vendor/fontawesome-free/css/all.min.css')) }}">
+            <link rel="stylesheet" type="text/css" href="{{ absolute_url(asset('assets/vendor/simple-line-icons/css/simple-line-icons.min.css')) }}">
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <div class="page-wrapper">
+        <div class="top-notice text-white bg-dark">
+            <div class="container text-center">
+                <h5 class="d-inline-block mb-0 mr-2">Pre-commandezles CD devos artistes </h5>
+                <a href="#" class="category">LES LEADERS</a>
+                <a href="#" class="category ml-2 mr-3">ISMAEL ISSAC</a>
+                <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+            </div>
+        </div>
+
+        <header class="header">
+            <div class="header-top bg-primary text-uppercase">
+                <div class="container">
+                    <div class="header-left">
+                        <div class="header-dropdown  dropdown-expanded ">
+                            <a href="#" class="pl-0">Nos plateformes</a>
+                            <div class="header-menu">
+                                <ul>
+                                    <li><a href="http://dreammaker-ci.com"target="_blank">Dream Maker</a></li>
+                                    <li><a href="http://tv.dreammakerci.com" target="_blank">DreamTV</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="header-right header-dropdowns ml-0 ml-sm-auto">
+                        <div class="header-dropdown dropdown-expanded mr-3">
+                            <a href="#">Connexion</a>
+                            <div class="header-menu">
+                                <ul>
+                                    <li><a href="#">Mon compte </a></li>
+                                    <li><a href="{{ absolute_url(path('app_login')) }}">Se connecter</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <span class="separator"></span>
+
+                        <div class="social-icons">
+                            <a href="#" class="social-icon social-instagram icon-instagram" target="_blank"></a>
+                            <a href="#" class="social-icon social-twitter icon-twitter" target="_blank"></a>
+                            <a href="#" class="social-icon social-facebook icon-facebook" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-middle text-dark">
+                <div class="container">
+                    <div class="header-left col-lg-2 w-auto pl-0">
+                        <button class="mobile-menu-toggler mr-2" type="button">
+                            <i class="icon-menu"></i>
+                        </button>
+                        <a href="{{absolute_url(path('app_accueil') )}}" class="logo">
+                            <img src="{{ absolute_url(asset('assets/images/logo.png')) }}" alt="Logo de Dream Maker" class="img-fluid">
+                        </a>
+                    </div>
+
+                    <div class="header-right w-lg-max pl-2">
+                        <div class="header-search header-icon header-search-inline header-search-category w-lg-max mr-lg-4">
+                            <a href="#" class="search-toggle" role="button"><i class="icon-search-3"></i></a>
+                            <form action="#" method="get">
+                                <div class="header-search-wrapper">
+                                    <input type="search" class="form-control" name="q" id="q" placeholder="Recherche..." required>
+
+                                    <button class="btn p-0 icon-search-3" type="submit"></button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="header-contact d-none d-lg-flex align-items-center pr-xl-5 mr-3 ml-xl-5">
+                            <i class="icon-phone-2"></i>
+                            <h6 class="pt-1 line-height-1">Nous contacter<a href="tel:+225 58999979" class="d-block text-dark ls-10 pt-1">+225 58 99 99 79</a></h6>
+                        </div>
+
+                        <!-- Panier a inserer -->
+                    </div>
+                </div>
+            </div>
+
+            {% block menu %}{% endblock %}
+        </header>
+
+            {% block body %}{% endblock %}
+
+        <footer class="footer bg-dark">
+            <div class="footer-middle">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6 pb-5 pb-sm-0">
+                            <div class="widget">
+                                <h4 class="widget-title">A propos de nous</h4>
+                                <img src="{{ absolute_url(asset('assets/images/logo_dm.png')) }}" alt="Logo" class="m-b-3 img-fluid" width="150">
+                                <p class="m-b-4 pb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec vestibulum magna, et dapibus lacus. Duis nec vestibulum magna, et dapibus lacus.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-sm-6 pb-5 pb-sm-0">
+                            <div class="widget">
+                                <h4 class="widget-title pb-1">Dream Maker</h4>
+
+                                <ul class="links">
+                                    <li><a href="#">Qui sommes-nous</a></li>
+                                    <li><a href="#">Nos services</a></li>
+                                    <li><a href="#">Notre label</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-sm-6 pb-5 pb-sm-0">
+                            <div class="widget">
+                                <h4 class="widget-title">Boutique</h4>
+
+                                <ul class="links">
+                                    <li><a href="#">Comment commander vos CD physique</a></li>
+                                    <li><a href="#">Option de livraison</a></li>
+                                    <li><a href="#">Points de ventes</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-sm-6 pb-5 pb-sm-0">
+                            <div class="widget mb-2">
+                                <h4 class="widget-title mb-1 pb-1">Contacts</h4>
+                                <ul class="contact-info m-b-4">
+                                    <li>
+                                        <span class="contact-info-label">Adresse:</span>Cocody 7è tranche non loin du Commissariat du 30è arrondissement
+                                    </li>
+                                    <li>
+                                        <span class="contact-info-label">Telephone:</span><a href="tel:">+225 21 24 38 43 / 58 99 99 79 </a>
+                                    </li>
+                                    <li>
+                                        <span class="contact-info-label">Email:</span> <a href="mailto:info@dreammaker-ci.com">info@dreammaker-ci.com</a>
+                                    </li>
+                                </ul>
+                                <div class="social-icons">
+                                    <a href="#" class="social-icon social-facebook icon-facebook" target="_blank" title="Facebook"></a>
+                                    <a href="#" class="social-icon social-twitter icon-twitter" target="_blank" title="Twitter"></a>
+                                    <a href="#" class="social-icon social-gplus fab fa-youtube" target="_blank" title="Linkedin"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="footer-bottom d-flex justify-content-between align-items-center flex-wrap">
+                    <p class="footer-copyright py-3 pr-4 mb-0">© Dream Maker 2020. Tous droits réservés</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+        <div class="mobile-menu-overlay"></div>
+
+        <div class="mobile-menu-container">
+            <div class="mobile-menu-wrapper">
+                <span class="mobile-menu-close"><i class="icon-cancel"></i></span>
+                <nav class="mobile-nav">
+                    <ul class="mobile-menu mb-3">
+                        <li class="active"><a href="#">Accueil</a></li>
+                        <li><a href="#">Artistes</a></li>
+                        <li><a href="#">Albums</a></li>
+                        <li>
+                            <a href="#">Genres</a>
+                            <ul>
+                                <li><a href="#">Zouglou</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Points de vente</a></li>
+                    </ul>
+
+                    <ul class="mobile-menu">
+                        <li><a href="#">Mon compte </a></li>
+                        <li><a href="#">Mes commandes</a></li>
+                    </ul>
+                </nav>
+
+                <div class="social-icons">
+                    <a href="#" class="social-icon" target="_blank"><i class="icon-facebook"></i></a>
+                    <a href="#" class="social-icon" target="_blank"><i class="icon-twitter"></i></a>
+                    <a href="#" class="social-icon" target="_blank"><i class="icon-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background: #f1f1f1 no-repeat center/cover url({{ asset('assets/images/pop/pop1.png') }})">
+            <div class="newsletter-popup-content">
+
+                <p style="padding-top: 250px; padding-left: 20px;"><a href="#" class="btn text-white">Commander</a></p>
+            </div>
+        </div>
+        <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
+
+        {% block javascripts %}
+            <script src="{{ absolute_url(asset('assets/js/jquery.min.js')) }}"></script>
+            <script src="{{ absolute_url(asset('assets/js/bootstrap.bundle.min.js')) }}"></script>
+            <script src="{{ absolute_url(asset('assets/js/plugins.min.js')) }}"></script>
+
+            <script src="{{ absolute_url(asset('assets/js/main.min.js')) }}"></script>
+        {% endblock %}
     </body>
 </html>

@@ -1,0 +1,149 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent ()}} Accueil{% endblock %}
+
+{% block menu %}
+    <div class="header-bottom sticky-header d-none d-lg-block">
+        <div class="container">
+            <nav class="main-nav w-100">
+                <ul class="menu">
+                    <li class="active">
+                        <a href="{{ absolute_url(path('app_accueil')) }}">Accueil</a>
+                    </li>
+                    <li><a href="#">Artistes</a></li>
+                    <li><a href="#">Albums</a></li>
+                    <li>
+                        <a href="#">Genres</a>
+                        <ul>
+                            <li><a href="#">Zouglou</a></li>
+                            <li><a href="#">Afrobeat</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Points de vente</a></li>
+                    <li class="float-right"><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <main class="main">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ absolute_url(path('app_accueil')) }}"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#">Zouglou</a></li>
+                    <li class="breadcrumb-item"><a href="#">{{ album.artiste.nom}}</a></li>
+                </ol>
+            </nav>
+            <div class="product-single-container product-single-default">
+                <div class="row">
+                    <div class="col-md-5 product-single-gallery">
+                        <div class="product-slider-container">
+                            <div class="product-single-carousel owl-carousel owl-theme">
+                                <div class="product-item">
+                                    <img class="product-single-image" src="{{ absolute_url(asset('uploads/album/' ~ album.pochette)) }}" data-zoom-image="{{ absolute_url(asset('uploads/album/' ~ album.pochette)) }}"/>
+                                </div>
+                                <div class="product-item">
+                                    <img class="product-single-image" src="assets/images/pochette/rondelle2.jpg" data-zoom-image="assets/images/pochette/rondelle2.jpg"/>
+                                </div>
+                                <div class="product-item">
+                                    <img class="product-single-image" src="assets/images/pochette/rondelle3.jpg" data-zoom-image="assets/images/pochette/rondelle3.jpg"/>
+                                </div>
+                                <div class="product-item">
+                                    <img class="product-single-image" src="assets/images/pochette/rondelle4.jpg" data-zoom-image="assets/images/pochette/rondelle4.jpg"/>
+                                </div>
+                            </div>
+                            <!-- End .product-single-carousel -->
+                            <span class="prod-full-screen">
+									<i class="icon-plus"></i>
+								</span>
+                        </div>
+                        <div class="prod-thumbnail owl-dots" id='carousel-custom-dots'>
+                            <div class="owl-dot">
+                                <img src="{{ absolute_url(asset('uploads/album/' ~ album.pochette)) }}"/>
+                            </div>
+                            <div class="owl-dot">
+                                <img src="assets/images/pochette/rondelle2.jpg"/>
+                            </div>
+                            <div class="owl-dot">
+                                <img src="assets/images/pochette/rondelle3.jpg"/>
+                            </div>
+                            <div class="owl-dot">
+                                <img src="assets/images/pochette/rondelle4.jpg"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-7 product-single-details">
+                        <h1 class="product-title">{{ album.titre }}</h1>
+
+                        <hr class="short-divider">
+
+                        <div class="price-box">
+                            <span class="product-price">{{ album.prixVente|number_format(0,'','.') }} FCFA</span>
+                        </div>
+
+                        <div class="product-desc">
+                            <p>
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolre eu fugiat nulla pariatur excepteur sint occaecat cupidatat non. Duis aute irure dolor in reprehenderit in voluptate velit esse.
+
+                            </p>
+                        </div>
+
+                        <hr class="divider">
+
+                        <div class="product-action">
+                            <form action="panier.html">
+                                <div class="product-single-qty">
+                                    <input class="horizontal-quantity form-control" type="text">
+                                </div>
+
+                                <button type="submit" class="btn btn-dark add-cart icon-shopping-cart" title="Add to Cart">Commandez</button>
+                            </form>
+                        </div>
+
+                        <hr class="divider mb-1">
+
+                        <div class="product-single-share">
+                            <label class="sr-only">Partage:</label>
+
+                            <div class="social-icons mr-2">
+                                <a href="#" class="social-icon social-facebook icon-facebook" target="_blank" title="Facebook"></a>
+                                <a href="#" class="social-icon social-twitter icon-twitter" target="_blank" title="Twitter"></a>
+                                <a href="#" class="social-icon social-linkedin fab fa-linkedin-in" target="_blank" title="Linkedin"></a>
+                                <a href="#" class="social-icon social-gplus fab fa-google-plus-g" target="_blank" title="Google +"></a>
+                                <a href="#" class="social-icon social-mail icon-mail-alt" target="_blank" title="Mail"></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-single-tabs">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="product-tab-desc" data-toggle="tab" href="#product-desc-content" role="tab" aria-controls="product-desc-content" aria-selected="true">Description</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="product-desc-content" role="tabpanel" aria-labelledby="product-tab-desc">
+                        <div class="product-desc-content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat.</p>
+                            <ul>
+                                <li><i class="fa fa-check-circle"></i>Any Product types that You want - Simple, Configurable</li>
+                                <li><i class="fa fa-check-circle"></i>Downloadable/Digital Products, Virtual Products</li>
+                                <li><i class="fa fa-check-circle"></i>Inventory Management with Backordered items</li>
+                            </ul>
+                            <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <br>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Autres albums-->
+        </div>
+    </main>
+{% endblock %}
