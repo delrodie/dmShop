@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,7 +21,7 @@ class AlbumType extends AbstractType
         $builder
             ->add('titre', TextType::class,['attr'=>['class'=>'form-control', 'placeholder'=>"Titre de l'album", 'autocomplete'=>'off']])
             ->add('prixVente', IntegerType::class,['attr'=>['class'=>'form-control', 'placeholder'=>"",'autocomplete'=>"off"]])
-            //->add('nonSticke', IntegerType::class,['attr'=>['class'=>'form-control', 'placeholder'=>"",'autocomplete'=>"off"]])
+            ->add('description', TextareaType::class,['attr'=>['class'=>'form-control', 'placeholder'=>"La description de l'album", 'rows'=>'9'], 'required'=>false])
             //->add('sticke', IntegerType::class,['attr'=>['class'=>'form-control', 'placeholder'=>"",'autocomplete'=>"off"]])
             //->add('distribue', IntegerType::class,['attr'=>['class'=>'form-control', 'placeholder'=>"",'autocomplete'=>"off"]])
             ->add('pochette', FileType::class,[
@@ -49,6 +50,17 @@ class AlbumType extends AbstractType
                 },
                 'choice_label' => 'nom',
                 'label' => 'Artiste',
+                'required'=>true,
+                'multiple' => false
+            ])
+            ->add('genre', EntityType::class,[
+                'attr'=>['class'=>'form-control rubrique-select'],
+                'class'=> 'App\Entity\Genre',
+                'query_builder' => function(EntityRepository $er){
+                    return $er->liste();
+                },
+                'choice_label' => 'libelle',
+                'label' => 'Genre',
                 'required'=>true,
                 'multiple' => false
             ])

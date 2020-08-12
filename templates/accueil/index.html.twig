@@ -50,7 +50,7 @@
                         {% for album in albums|slice(0,3) %}
                             <div class="banner banner{{ loop.index }} banner-hover-shadow mb-2">
                                 <figure>
-                                    <a href="{{ path('frontend_album_show', {'slug': album.slug}) }}">
+                                    <a href="{{ path('frontend_album_show', {'artiste': album.artiste.slug, 'slug': album.slug}) }}">
                                         <img src="{{ absolute_url(asset('uploads/album/' ~ album.pochette)) }}" alt="{{ album.titre }}">
                                     </a>
                                 </figure>
@@ -64,7 +64,7 @@
                         {% for album in albums|slice(0,5) %}
                             <div class="product-default inner-quickview inner-icon">
                                 <figure>
-                                    <a href="{{ path('frontend_album_show', {'slug': album.slug}) }}">
+                                    <a href="{{ path('frontend_album_show', {'artiste': album.artiste.slug, 'slug': album.slug}) }}">
                                         <img src="{{ absolute_url(asset('uploads/album/' ~ album.pochette)) }}">
                                     </a>
                                     <div class="label-group">
@@ -79,7 +79,7 @@
                                         </div>
                                     </div>
                                     <h2 class="product-title">
-                                        <a href="{{ path('frontend_album_show', {'slug': album.slug}) }}">{{ album.titre }}</a>
+                                        <a href="{{ path('frontend_album_show', {'artiste': album.artiste.slug, 'slug': album.slug}) }}">{{ album.titre }}</a>
                                     </h2>
                                     <div class="price-box">
                                         <span class="product-price">{{ album.prixVente|number_format(0,'','.') }} FCFA</span>
