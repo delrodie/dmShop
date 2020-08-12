@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande validée{% endblock %}
+
+{% block menu %}
+    {{ render(url('menu_horizontal')) }}
+{% endblock %}
+
+{% block body %}
+    <main class="main">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('app_accueil') }}"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Panier</li>
+                </ol>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <ul class="checkout-steps">
+                        <li>
+
+                            {% for message in app.flashes('success') %}
+                                <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <i class="mdi mdi-checkbox-marked-circle font-32"></i><strong class="pr-1">Success !</strong> {{ message }}
+                                </div>
+                            {% endfor %}
+
+                            <div class="shipping-step-addresses">
+                                <div class="shipping-address-box">
+                                    {% for album in commande.album %}
+                                        <img src="{{ absolute_url(asset('uploads/album/' ~ album.pochette)) }}" alt="">
+                                    {% endfor %}
+
+                                </div>
+                                <div class="shipping-address-box active mt-3" style="font-size: 1.7rem">
+                                    <h6>VOTRE COMMANDE</h6>
+                                    <address>
+                                        <b>Nom</b>: {{ commande.nom }} <br>
+                                        <b>Commune</b>: {{ commande.commune }} <br>
+                                        <b>Adresse</b>: {{ commande.adresse }} <br>
+                                        <b>CD</b>: {% for album in commande.album  %}
+                                        {{ album.artiste.nom }} {{ album.titre }}
+                                        {% endfor %} <br>
+                                        <b>Quantité</b>: {{ commande.quantite }} <br>
+                                        <b>Montant total</b>: {{ commande.montant|number_format(0,'','.') }} FCFA<br>
+                                    </address>
+                                </div>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="widget widget-posts post-date-in-media">
+                        <div class="owl-carousel owl-theme dots-left dots-m-0" data-owl-options="{
+								'margin': 20
+							}">
+                            <article class="post">
+                                <div class="post-media">
+                                    <a href="#">
+                                        <img src="{{ absolute_url(asset('assets/images/promo/affiche1.jpg')) }}" alt="Post">
+                                    </a>
+                                </div>
+                            </article>
+
+                            <article class="post">
+                                <div class="post-media">
+                                    <a href="#">
+                                        <img src="{{ absolute_url(asset('assets/images/promo/affiche3.jpg')) }}" alt="Post">
+                                    </a>
+                                </div>
+                            </article>
+
+                            <article class="post">
+                                <div class="post-media">
+                                    <a href="#">
+                                        <img src="{{ absolute_url(asset('assets/images/promo/affiche1.jpg')) }}" alt="Post">
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="widget widget-newsletters bg-gray text-center">
+                        <h3 class="widget-title text-uppercase">Newsletter</h3>
+                        <p class="mb-2">Ne manquez plus les sorties d'albums de vos artistes préférés. </p>
+                        <form action="#">
+                            <div class="form-group position-relative sicon-envolope-letter">
+                                <input type="email" class="form-control" name="newsletter-email" placeholder="Adresse email">
+                            </div>
+                            <input type="submit" class="btn btn-primary btn-md" value="S'inscrire">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6"></div>
+    </main>
+{% endblock %}

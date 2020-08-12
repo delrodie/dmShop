@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block menu %}
+    {{ render(url('menu_horizontal')) }}
+{% endblock %}
+
+{% block body %}
+    <main class="main">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('app_accueil') }}"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Panier</li>
+                </ol>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="cart-table-container">
+                        <table class="table table-cart">
+                            <thead>
+                            <tr>
+                                <th class="product-col">Albums</th>
+                                <th class="price-col">Prix</th>
+                                <th class="qty-col">Qté</th>
+                                <th>Sous total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="product-row">
+                                <td class="product-col">
+                                    <figure class="product-image-container">
+                                        <a href="#" class="product-image">
+                                            <img src="{{ absolute_url(asset('uploads/album/' ~ album.pochette)) }}" alt="{{ album.artiste.nom }} {{ album.titre }}" class="rounded-circle" width="100">
+                                        </a>
+                                    </figure>
+                                    <h2 class="product-title">
+                                        <a href="#">{{ album.titre }}</a>
+                                    </h2>
+                                </td>
+                                <td>{{ album.prixVente|number_format(0,'','.') }}</td>
+                                <td class="">
+                                    <div class="input-group-sm" type="text">{{ qte }}
+                                    </div>
+                                </td>
+                                <td>
+                                    {% set pv = album.prixVente*qte %}
+                                    <b>{{ pv|number_format(0,'','.') }} FCFA</b>
+                                </td>
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="cart-summary">
+                        <h3>Commande</h3>
+
+                        {{ form_start(form) }}
+
+                        <div class="form-group form-group-sm">
+                            <label>Nom & prénoms</label>
+                            {{ form_widget(form.nom) }}
+                            {{ form_errors(form.nom) }}
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label>Téléphone</label>
+                            {{ form_widget(form.tel) }}
+                            {{ form_errors(form.tel) }}
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label>Commune</label>
+                            {{ form_widget(form.commune) }}
+                            {{ form_errors(form.commune) }}
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label>Adresse de livraison</label>
+                            {{ form_widget(form.adresse) }}
+                            {{ form_errors(form.adresse) }}
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label>Adresse email</label>
+                            {{ form_widget(form.email) }}
+                            {{ form_errors(form.email) }}
+                        </div>
+                        {{ form_widget(form) }}
+
+                        <table class="table table-totals mt-3">
+                            <tbody>
+                            <tr>
+                                <td>Sous total</td>
+                                <td>{{ pv|number_format(0,'','.') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Frais de livraison</td>
+                                <td>0</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td>Total</td>
+                                <td>{{ pv|number_format(0,'','.') }} Fcfa</td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                        <div class="checkout-methods mt-5">
+                            <button class="btn btn-block btn-sm btn-primary">{{ button_label|default('Valider') }}</button>
+                        </div>
+                        <input type="hidden" name="quantite"value="{{ qte }}">
+                        <input type="hidden" name="montant" value="{{ pv }}">
+                        <input type="hidden" name="album" value="{{ album.slug }}">
+                        {{ form_end(form) }}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6"></div>
+    </main>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.commune').select2();
+        });
+    </script>
+{% endblock %}

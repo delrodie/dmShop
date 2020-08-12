@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent ()}} Accueil{% endblock %}
+{% block title %}{{ parent ()}} {{ album.artiste.nom }} {{ album.titre }}{% endblock %}
 
 {% block menu %}
-    {{ render(url('menu_horizontal')) }}
+    <!--{{ render(url('menu_horizontal')) }}-->
 {% endblock %}
 
 {% block body %}
@@ -46,12 +46,12 @@
                         <hr class="divider">
 
                         <div class="product-action">
-                            <form action="panier.html">
+                            <form action="{{ path('panier') }}" method="get">
                                 <div class="product-single-qty">
-                                    <input class="horizontal-quantity form-control" type="text">
+                                    <input class="horizontal-quantity form-control" name="quantite" type="text">
                                 </div>
-
-                                <button type="submit" class="btn btn-dark add-cart icon-shopping-cart" title="Add to Cart">Commandez</button>
+                                <input type="hidden"name="album" value="{{ album.slug }}">
+                                <button type="submit" class="btn btn-dark add-cart icon-shopping-cart" title="Commander">Commandez</button>
                             </form>
                         </div>
 
