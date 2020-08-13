@@ -8,11 +8,14 @@
 
         <title>{% block title %}Plateforme de distribution d'oeuvres discograpiques de Dream Maker{% endblock %}</title>
 
-        <meta name="keywords" content="Dream Maker, Boutique, " />
-        <meta name="description" content="Boutique de vente de vente de CD etde distribution de CD">
-        <meta name="author" content="Dream Maker, Delrodie AMOIKON">
 
-        <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.ico">
+        {% block meta %}
+            <meta name="keywords" content="Dream Maker, Boutique, " />
+            <meta name="description" content="Boutique de vente de vente de CD etde distribution de CD">
+            <meta name="author" content="Dream Maker, Delrodie AMOIKON">
+        {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ absolute_url(asset('assets/images/logo.png')) }}">
 
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ absolute_url(asset('assets/css/bootstrap.min.css')) }}">
