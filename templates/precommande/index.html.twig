@@ -1,0 +1,37 @@
+{% extends 'backoffice_layout.html.twig' %}
+
+{% block title %}{{parent()}} Liste des albums de precommande {% endblock %}
+
+{% block body %}
+    <div class="page-content-wrapper ">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Gestion des Albums Pré-commandés</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for album in albums %}
+                    <div class="col-md-4 col-xl-3">
+                        <div class="card m-b-30">
+                            <img class="card-img-top img-fluid" src="{{ absolute_url(asset('uploads/album/' ~ album.pochette)) }}" alt="{{ album.titre }}">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="{{ path('backend_precommande_album', {'album': album.slug}) }}">{{ album.titre }}</a></h5>
+                                <p class="card-text">
+                                    <small class="text-muted">{{ album.artiste.nom }}</small>
+                                    <a href="{{ path('backend_precommande_album', {'album': album.slug}) }}" class="float-right"><i class="fa fa-shopping-cart pr-1"></i>32</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
