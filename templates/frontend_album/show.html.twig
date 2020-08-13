@@ -20,6 +20,17 @@
             </nav>
             <div class="product-single-container product-single-default">
                 <div class="row">
+                    <div class="col-sm-12 d-sm-block mt-5 text-center  product-single-details d-md-none">
+                        <div class="product-action">
+                            <form action="{{ path('panier') }}" method="get">
+                                <div class="product-single-qty">
+                                    <input class="horizontal-quantity form-control" name="quantite" type="text">
+                                </div>
+                                <input type="hidden"name="album" value="{{ album.slug }}">
+                                <button type="submit" class="btn btn-dark add-cart icon-shopping-cart" title="Commander">Commandez</button>
+                            </form>
+                        </div>
+                    </div>
                     <div class="col-md-5 product-single-gallery">
                         <div class="product-slider-container">
                             <div class="product-single-carousel owl-carousel owl-theme">
@@ -94,6 +105,7 @@
         </div>
     </main>
 {% endblock %}
+
 
 {% block meta %}
 
