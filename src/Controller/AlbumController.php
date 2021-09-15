@@ -127,7 +127,7 @@ class AlbumController extends AbstractController
             //Slug
             $slug = $this->slugger->slug($album->getTitre());
             $album->setSlug($slug);
-            dd($album);
+            //dd($album);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('album_index');
